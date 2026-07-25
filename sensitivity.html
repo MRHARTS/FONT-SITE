@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamerID Pro - Sensitivity Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="logo">🎮 GamerID Pro</div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Gamer ID</a></li>
+                    <li><a href="sensitivity.html" class="nav-link active">🔒 Sensitivity</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Sensitivity Generator Section -->
+            <section class="tool-section active">
+                <header class="header premium-header">
+                    <div class="header-content">
+                        <h1 class="title">🔒 SENSITIVITY ANALYZER 🔒</h1>
+                        <p class="subtitle">Optimized Settings for Free Fire & Free Fire Max</p>
+                        <span class="premium-badge">PREMIUM FEATURE</span>
+                    </div>
+                </header>
+
+                <div class="tool-container">
+                    <!-- Device Info Form -->
+                    <section class="device-info-section">
+                        <h2>Enter Your Device Information</h2>
+                        <p class="info-hint">We'll analyze and generate the perfect sensitivity for your device!</p>
+
+                        <form id="deviceForm" class="device-form">
+                            <!-- Device Name -->
+                            <div class="form-group">
+                                <label for="deviceName">Device Name *</label>
+                                <select id="deviceName" class="form-input" required>
+                                    <option value="">Select your device...</option>
+                                    <option value="iphone-13">iPhone 13</option>
+                                    <option value="iphone-14">iPhone 14</option>
+                                    <option value="iphone-15">iPhone 15</option>
+                                    <option value="samsung-s23">Samsung Galaxy S23</option>
+                                    <option value="samsung-s24">Samsung Galaxy S24</option>
+                                    <option value="samsung-a13">Samsung Galaxy A13</option>
+                                    <option value="oneplus-11">OnePlus 11</option>
+                                    <option value="oneplus-12">OnePlus 12</option>
+                                    <option value="poco-x5">Poco X5</option>
+                                    <option value="poco-f5">Poco F5</option>
+                                    <option value="redmi-note-12">Redmi Note 12</option>
+                                    <option value="realme-11">Realme 11</option>
+                                    <option value="custom">Custom Device</option>
+                                </select>
+                            </div>
+
+                            <!-- Custom Device Name -->
+                            <div class="form-group" id="customDeviceGroup" style="display: none;">
+                                <label for="customDeviceName">Custom Device Name</label>
+                                <input type="text" id="customDeviceName" class="form-input" placeholder="e.g., My Gaming Phone">
+                            </div>
+
+                            <!-- Device Model -->
+                            <div class="form-group">
+                                <label for="deviceModel">Device Model/Processor</label>
+                                <input type="text" id="deviceModel" class="form-input" placeholder="e.g., Snapdragon 8 Gen 2">
+                            </div>
+
+                            <!-- RAM -->
+                            <div class="form-group">
+                                <label for="deviceRam">RAM (GB) *</label>
+                                <select id="deviceRam" class="form-input" required>
+                                    <option value="">Select RAM...</option>
+                                    <option value="4">4 GB</option>
+                                    <option value="6">6 GB</option>
+                                    <option value="8">8 GB</option>
+                                    <option value="12">12 GB</option>
+                                    <option value="16">16 GB+</option>
+                                </select>
+                            </div>
+
+                            <!-- Screen DPI -->
+                            <div class="form-group">
+                                <label for="screenDpi">Screen DPI (Optional)</label>
+                                <input type="number" id="screenDpi" class="form-input" placeholder="e.g., 450" min="200" max="700">
+                                <small>Leave empty to auto-detect</small>
+                            </div>
+
+                            <!-- Game Version -->
+                            <div class="form-group">
+                                <label for="gameVersion">Game Version *</label>
+                                <select id="gameVersion" class="form-input" required>
+                                    <option value="">Select game version...</option>
+                                    <option value="ff">Free Fire (Original)</option>
+                                    <option value="ffmax">Free Fire Max</option>
+                                </select>
+                            </div>
+
+                            <!-- Play Style -->
+                            <div class="form-group">
+                                <label for="playStyle">Your Play Style *</label>
+                                <select id="playStyle" class="form-input" required>
+                                    <option value="">Select your play style...</option>
+                                    <option value="aggressive">🔥 Aggressive (High Sensitivity)</option>
+                                    <option value="balanced">⚖️ Balanced (Medium Sensitivity)</option>
+                                    <option value="sniper">🎯 Sniper (Low Sensitivity)</option>
+                                    <option value="competitive">🏆 Competitive (Pro Settings)</option>
+                                </select>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Generate Sensitivity</button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <!-- Sensitivity Results -->
+                    <section id="sensitivityResults" class="sensitivity-results hidden">
+                        <h2>Your Optimized Sensitivity Settings</h2>
+                        
+                        <!-- Device Summary -->
+                        <div id="deviceSummary" class="device-summary">
+                            <!-- Will be filled by JavaScript -->
+                        </div>
+
+                        <!-- Sensitivity Settings Cards -->
+                        <div class="sensitivity-cards">
+                            <!-- Horizontal Sensitivity -->
+                            <div class="sensitivity-card">
+                                <div class="card-header">
+                                    <h3>Horizontal Sensitivity</h3>
+                                    <span class="card-emoji">↔️</span>
+                                </div>
+                                <div class="sensitivity-value" id="horSensitivity">--</div>
+                                <p class="card-description">Left-Right movement speed</p>
+                                <div class="quick-actions">
+                                    <button class="copy-sensitivity-btn" data-value="horizontal">Copy</button>
+                                </div>
+                            </div>
+
+                            <!-- Vertical Sensitivity -->
+                            <div class="sensitivity-card">
+                                <div class="card-header">
+                                    <h3>Vertical Sensitivity</h3>
+                                    <span class="card-emoji">↕️</span>
+                                </div>
+                                <div class="sensitivity-value" id="verSensitivity">--</div>
+                                <p class="card-description">Up-Down movement speed</p>
+                                <div class="quick-actions">
+                                    <button class="copy-sensitivity-btn" data-value="vertical">Copy</button>
+                                </div>
+                            </div>
+
+                            <!-- Red Dot Sensitivity -->
+                            <div class="sensitivity-card">
+                                <div class="card-header">
+                                    <h3>Red Dot Sensitivity</h3>
+                                    <span class="card-emoji">🔴</span>
+                                </div>
+                                <div class="sensitivity-value" id="redDotSensitivity">--</div>
+                                <p class="card-description">Aim assist with red dot</p>
+                                <div class="quick-actions">
+                                    <button class="copy-sensitivity-btn" data-value="redDot">Copy</button>
+                                </div>
+                            </div>
+
+                            <!-- 2x Scope Sensitivity -->
+                            <div class="sensitivity-card">
+                                <div class="card-header">
+                                    <h3>2x Scope Sensitivity</h3>
+                                    <span class="card-emoji">🔭</span>
+                                </div>
+                                <div class="sensitivity-value" id="scope2xSensitivity">--</div>
+                                <p class="card-description">2x zoom scope aiming</p>
+                                <div class="quick-actions">
+                                    <button class="copy-sensitivity-btn" data-value="scope2x">Copy</button>
+                                </div>
+                            </div>
+
+                            <!-- 4x Scope Sensitivity -->
+                            <div class="sensitivity-card">
+                                <div class="card-header">
+                                    <h3>4x Scope Sensitivity</h3>
+                                    <span class="card-emoji">🔭</span>
+                                </div>
+                                <div class="sensitivity-value" id="scope4xSensitivity">--</div>
+                                <p class="card-description">4x zoom scope aiming</p>
+                                <div class="quick-actions">
+                                    <button class="copy-sensitivity-btn" data-value="scope4x">Copy</button>
+                                </div>
+                            </div>
+
+                            <!-- 8x Scope Sensitivity -->
+                            <div class="sensitivity-card">
+                                <div class="card-header">
+                                    <h3>8x Scope Sensitivity</h3>
+                                    <span class="card-emoji">🔭</span>
+                                </div>
+                                <div class="sensitivity-value" id="scope8xSensitivity">--</div>
+                                <p class="card-description">8x zoom scope aiming</p>
+                                <div class="quick-actions">
+                                    <button class="copy-sensitivity-btn" data-value="scope8x">Copy</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tips & Recommendations -->
+                        <div class="tips-section">
+                            <h3>💡 Tips & Recommendations</h3>
+                            <ul id="tipsList" class="tips-list">
+                                <!-- Will be filled by JavaScript -->
+                            </ul>
+                        </div>
+
+                        <!-- Settings Summary -->
+                        <div class="settings-summary">
+                            <h3>📋 Full Settings Summary</h3>
+                            <pre id="settingsSummary"></pre>
+                            <button class="btn btn-primary" id="copyAllBtn">Copy All Settings</button>
+                        </div>
+
+                        <!-- Back Button -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="backBtn">Generate New</button>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with ❤️ for Gamers | GamerID Pro © 2024</p>
+        </footer>
+    </div>
+
+    <script src="sensitivity.js"></script>
+</body>
+</html>
